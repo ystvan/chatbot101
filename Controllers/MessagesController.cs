@@ -9,6 +9,7 @@ using Microsoft.Bot.Connector;
 namespace chatbot101
 {
     [BotAuthentication]
+    //This API Controller is an application endpoint for the Bot Framework
     public class MessagesController : ApiController
     {
         /// <summary>
@@ -17,10 +18,13 @@ namespace chatbot101
         /// </summary>
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
+            //user sends something, and that's a message
             if (activity.Type == ActivityTypes.Message)
             {
+                //bot starts the conversation by firing up the RootDialog
                 await Conversation.SendAsync(activity, () => new RootDialog());
             }
+            //user sends a picture, or other Activity happens
             else
             {
                 HandleSystemMessage(activity);
@@ -29,6 +33,7 @@ namespace chatbot101
             return response;
         }
 
+        //Handle other Activties
         private Activity HandleSystemMessage(Activity message)
         {
             if (message.Type == ActivityTypes.DeleteUserData)
