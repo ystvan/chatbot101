@@ -1,5 +1,7 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using chatbot101.Dialogs;
@@ -21,6 +23,8 @@ namespace chatbot101
             //user sends something, and that's a message
             if (activity.Type == ActivityTypes.Message)
             {
+                await SendTypingActivity(activity);
+
                 //bot starts the conversation by firing up the RootDialog
                 await Conversation.SendAsync(activity, () => new RootDialog());
             }
@@ -32,6 +36,17 @@ namespace chatbot101
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
+
+        //sending typing activity, to show the bot is compiling the answer for user's input
+        private static async Task SendTypingActivity(Activity activity)
+        {
+            var connector = new ConnectorClient(new Uri(activity.ServiceUrl));
+            Activity isTypingReply = activity.CreateReply();
+            isTypingReply.Type = ActivityTypes.Typing;
+            await connector.Conversations.ReplyToActivityAsync(isTypingReply);
+            Thread.Sleep(2000);
+        }
+
 
         //Handle other Activties
         private Activity HandleSystemMessage(Activity message)

@@ -8,8 +8,11 @@ namespace chatbot101.Dialogs
     [Serializable]
     public class RootDialog : IDialog<object>
     {
+        //StartAsync is part of IDialog interface, so it must be implemented
+        //The first medthod which is called in each Dialog
         public Task StartAsync(IDialogContext context)
         {
+            //waiting for the first message, when received call the method MessageReceivedAsync();
             context.Wait(MessageReceivedAsync);
 
             return Task.CompletedTask;
