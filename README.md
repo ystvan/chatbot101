@@ -8,7 +8,7 @@ lecturer and supervisor: <strong>Peter Levinsky</strong> and <strong>Henrik Høl
 ## Plans to implement
 <ul>
 <li>A chatbot built by Microsoft's BotFramework (Fronter-bot for student queries regarding school administration)</li><br>
-<video src="https://bot-framework.azureedge.net/videos/skype-hero-050517-sm.mp4" autoplay="" loop=""></video><br>
+<img src="https://www.codeproject.com/KB/aspnet/1106457/article.png" height="200" width="auto"><br>
 <li>Cognitive Services API integration (LUIS) machine learning model trained to understand human language input</li><br>
 <span>
 <img src="https://luisweb.blob.core.windows.net/prod-assets/images/homepage/UsageScenarios.png" height="200" width="auto"></span>
