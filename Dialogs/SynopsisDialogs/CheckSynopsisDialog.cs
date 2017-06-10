@@ -69,7 +69,7 @@ namespace chatbot101.Dialogs.SynopsisDialogs
         /// </summary>
         /// <param name="context">The context for the execution of a dialog's conversational process.</param>
         /// <param name="result">If there is a parameter passed from the previous stack during deconstrucion</param>
-        /// <returns></returns>
+        /// <returns>No return type, only a task that represents the state transition</returns>
         private async Task ResumAfterChildDialog(IDialogContext context, IAwaitable<object> result)
         {
             await result;
