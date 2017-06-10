@@ -18,6 +18,7 @@ namespace chatbot101
         public static IMessageActivity CreateHeroCard(IMessageActivity replyMsg, string title, string[] values)
         {
             string path = @"http://i.imgur.com/hwQjecp.jpg";
+            string subtitle = "Select an option by tapping on the buttons or type a reply.";
 
             replyMsg.Text = title;
 
@@ -37,7 +38,9 @@ namespace chatbot101
                 Images = new List<CardImage>
                 {
                     new CardImage(path)
-                }
+                },
+                Subtitle = subtitle
+                
             };
             Attachment attachment = card.ToAttachment();
             replyMsg.Attachments.Add(attachment);

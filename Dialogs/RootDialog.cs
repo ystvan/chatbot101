@@ -61,6 +61,8 @@ namespace chatbot101.Dialogs
             //We have a message from the user!
             var message = await argument;
 
+            //User has chosen, so invoke the relevant Dialog and wait for it to finish, then call the 'callback' Dialog
+
             if (message.Text.Equals("Synopsis info", StringComparison.CurrentCultureIgnoreCase))
             {
                 context.Call<object>(new CheckSynopsisDialog(), ResumeAfterChildDialog);
@@ -73,10 +75,13 @@ namespace chatbot101.Dialogs
             {
                 context.Call<object>(new CheckLUISDialog(), ResumeAfterChildDialog);
             }
+            //User has sent something else, for simplycity ignore this input and wait for the next message
             else
             {
+               
                 context.Wait(MessageReceivedAsync);
             }
+
             await context.PostAsync(message);
         }
 
@@ -89,7 +94,7 @@ namespace chatbot101.Dialogs
         private async Task ResumeAfterChildDialog(IDialogContext context, IAwaitable<object> result)
         {
             var message = Cards.CreateHeroCard(context.MakeMessage(),
-                $"Can I help you with anything else? {Environment.NewLine}",
+                $"Is there anything else I can help you with? {Environment.NewLine}",
                 new string[] {"Internship info", "Synopsis info", "Other..."});
 
             await context.PostAsync(message);
