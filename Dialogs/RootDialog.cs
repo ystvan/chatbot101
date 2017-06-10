@@ -41,7 +41,7 @@ namespace chatbot101.Dialogs
         private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
             //sending message to user
-            var message = SimpleCards.CreateSimpleCard(context.MakeMessage(), $"Hi! How can I help you?",
+            var message = Cards.CreateHeroCard(context.MakeMessage(), $"Hi! How can I help you?",
                 new string[] {"Internship info", "Synopsis info", "Other..."});
 
             await context.PostAsync(message);
@@ -88,7 +88,7 @@ namespace chatbot101.Dialogs
         /// <returns>No return type, only a task that represents the state transition</returns>
         private async Task ResumeAfterChildDialog(IDialogContext context, IAwaitable<object> result)
         {
-            var message = SimpleCards.CreateSimpleCard(context.MakeMessage(),
+            var message = Cards.CreateHeroCard(context.MakeMessage(),
                 $"Can I help you with anything else? {Environment.NewLine}",
                 new string[] {"Internship info", "Synopsis info", "Other..."});
 
