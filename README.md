@@ -1,5 +1,8 @@
 :octocat: :alien: :see_no_evil: :hear_no_evil: :speak_no_evil: :rage2: :man_with_turban:
 
+# it's live:
+<p>Go and give it a spin, message my bot at <h3>https://www.facebook.com/datamatik/</h3> or <b>m.me/datamatik</b> </p>
+
 # Brief Description
 <p>This repository contains the following assignment for:<br>
 <strong>ErhvervsAkademi Sjælland synopsis for elective course: Webprogramming - HTML5 and JavaScript frameworks</strong> <br>
