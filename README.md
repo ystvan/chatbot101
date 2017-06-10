@@ -1,7 +1,9 @@
 :octocat: :alien: :see_no_evil: :hear_no_evil: :speak_no_evil: :rage2: :man_with_turban:
 
 # it's live:
-<p>Go and give it a spin, message my bot at <h3>https://www.facebook.com/datamatik/</h3> or <b>m.me/datamatik</b> </p>
+<p>Go and give it a spin, message my bot at <br>
+<h4>https://www.facebook.com/datamatik/</h4><br>
+or on Messenger directly: <h4>m.me/datamatik</h4> </p>
 
 # Brief Description
 <p>This repository contains the following assignment for:<br>
