@@ -117,6 +117,7 @@
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\InternshipDialogs\CheckInternshipDialog.cs" />
     <Compile Include="Dialogs\LUISDialogs\CheckLUISDialog.cs" />
+    <Compile Include="Dialogs\LUISDialogs\SupportDialog.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
     <Compile Include="Dialogs\SynopsisDialogs\CheckSynopsisDialog.cs" />
     <Compile Include="Global.asax.cs">
@@ -137,7 +138,13 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Dialogs\InternshipDialogs\Contract\" />
+    <Folder Include="Dialogs\InternshipDialogs\Vacancies\" />
+    <Folder Include="Dialogs\SynopsisDialogs\Deadlines\" />
+    <Folder Include="Dialogs\SynopsisDialogs\Exam\" />
+    <Folder Include="Dialogs\SynopsisDialogs\Requirements\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

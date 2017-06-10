@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using AdaptiveCards;
 using chatbot101.Dialogs.InternshipDialogs;
@@ -61,28 +62,46 @@ namespace chatbot101.Dialogs
             //We have a message from the user!
             var message = await argument;
 
+
             //User has chosen, so invoke the relevant Dialog and wait for it to finish, then call the 'callback' Dialog
 
-            if (message.Text.Equals("Synopsis info", StringComparison.CurrentCultureIgnoreCase))
+            if (message.Text.ToLower().Contains("help") || message.Text.ToLower().Contains("support") || message.Text.ToLower().Contains("problem"))
             {
-                context.Call<object>(new CheckSynopsisDialog(), ResumeAfterChildDialog);
+                await context.Forward(new SupportDialog(), this.ResumeAfterSupportDialog, message, CancellationToken.None);
+            }
+            else if (message.Text.Equals("Synopsis info", StringComparison.CurrentCultureIgnoreCase))
+            {
+                context.Call<object>(new CheckSynopsisDialog(), ResumeAfterOptionDialog);
             }
             else if (message.Text.Equals("Internship info", StringComparison.InvariantCultureIgnoreCase))
             {
-                context.Call<object>(new CheckInternshipDialog(), ResumeAfterChildDialog);
+                context.Call<object>(new CheckInternshipDialog(), ResumeAfterOptionDialog);
             }
             else if (message.Text.Equals("Other...", StringComparison.InvariantCultureIgnoreCase))
             {
-                context.Call<object>(new CheckLUISDialog(), ResumeAfterChildDialog);
+                context.Call<object>(new CheckLUISDialog(), ResumeAfterOptionDialog);
             }
             //User has sent something else, for simplycity ignore this input and wait for the next message
             else
             {
-               
                 context.Wait(MessageReceivedAsync);
             }
 
-            await context.PostAsync(message);
+            
+        }
+
+        /// <summary>
+        /// A callback Dialog which provides the support ticket number reference
+        /// </summary>
+        /// <param name="context">The context for the execution of a dialog's conversational process.</param>
+        /// <param name="result">The ticket number passed from the previous Dialog</param>
+        /// <returns></returns>
+        private async Task ResumeAfterSupportDialog(IDialogContext context, IAwaitable<int> result)
+        {
+            var ticketNumber = await result;
+
+            await context.PostAsync($"Thanks for contacting our Customer Service Support Team. Your ticket number is {ticketNumber}.");
+            context.Wait(this.MessageReceivedAsync);
         }
 
         /// <summary>
@@ -91,16 +110,22 @@ namespace chatbot101.Dialogs
         /// <param name="context">The context for the execution of a dialog's conversational process.</param>
         /// <param name="result">If there is a parameter passed from the previous stack deconstrucion</param>
         /// <returns>No return type, only a task that represents the state transition</returns>
-        private async Task ResumeAfterChildDialog(IDialogContext context, IAwaitable<object> result)
+        private async Task ResumeAfterOptionDialog(IDialogContext context, IAwaitable<object> result)
         {
-            var message = Cards.CreateHeroCard(context.MakeMessage(),
-                $"Is there anything else I can help you with? {Environment.NewLine}",
-                new string[] {"Internship info", "Synopsis info", "Other..."});
+            try
+            {
+                var message = await result;
+            }
+            catch (Exception ex)
+            {
+                await context.PostAsync($"Oops, something went wrong: {ex.Message}");
+            }
+            finally
+            {
+                // State transition - wait for 'operation choice' message from user (loop back)
+                context.Wait(this.MessageReceivedAsync);
+            }
 
-            await context.PostAsync(message);
-
-            // State transition - wait for 'operation choice' message from user (loop back)
-            context.Wait(MessageReceivedOperationChoice);
         }
     }
 }
