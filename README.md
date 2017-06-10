@@ -5,7 +5,7 @@
 <strong>ErhvervsAkademi Sjælland synopsis for elective course: Webprogramming - HTML5 and JavaScript frameworks</strong> <br>
 lecturer and supervisor: <strong>Peter Levinsky</strong> and <strong>Henrik Høltzer</strong></p>
 
-## Plans to implement
+## To be implemented
 <ul>
 <li>A chatbot built by Microsoft's BotFramework (Fronter-bot for student queries regarding school administration)</li><br>
 <img src="https://www.codeproject.com/KB/aspnet/1106457/article.png" height="200" width="auto"><br>
