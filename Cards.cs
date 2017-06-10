@@ -17,7 +17,7 @@ namespace chatbot101
         /// <returns></returns>
         public static IMessageActivity CreateHeroCard(IMessageActivity replyMsg, string title, string[] values)
         {
-            string path = @"http://cdn.makeuseof.com/wp-content/uploads/2015/11/swipesbot.png?x59455";
+            string path = @"http://i.imgur.com/hwQjecp.jpg";
 
             replyMsg.Text = title;
 
