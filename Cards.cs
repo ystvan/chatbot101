@@ -15,9 +15,9 @@ namespace chatbot101
         /// <param name="title">The string passed when the method called</param>
         /// <param name="values">The options (buttons) that the user can tap/click on</param>
         /// <returns></returns>
-        public static IMessageActivity CreateHeroCard(IMessageActivity replyMsg, string title, string[] values)
+        public static IMessageActivity CreateHeroCard(IMessageActivity replyMsg, string title, string imagePath, string[] values)
         {
-            string path = @"http://i.imgur.com/hwQjecp.jpg";
+            //imagePath = @"http://i.imgur.com/hwQjecp.jpg";
             string subtitle = "Select an option by tapping on the buttons or type a reply.";
 
             replyMsg.Text = title;
@@ -37,7 +37,7 @@ namespace chatbot101
                 Buttons = cardButtons,
                 Images = new List<CardImage>
                 {
-                    new CardImage(path)
+                    new CardImage(imagePath)
                 },
                 Subtitle = subtitle
                 

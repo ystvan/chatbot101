@@ -42,7 +42,7 @@ namespace chatbot101.Dialogs
         private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
             //sending message to user
-            var message = Cards.CreateHeroCard(context.MakeMessage(), $"Hi! How can I help you?",
+            var message = Cards.CreateHeroCard(context.MakeMessage(), $"How can I help you?", "http://i.imgur.com/hwQjecp.jpg",
                 new string[] {"Internship info", "Synopsis info", "Other..."});
 
             await context.PostAsync(message);
@@ -101,6 +101,8 @@ namespace chatbot101.Dialogs
             var ticketNumber = await result;
 
             await context.PostAsync($"Thanks for contacting our Customer Service Support Team. Your ticket number is {ticketNumber}.");
+
+            //loop back to start if user sends a message again
             context.Wait(this.MessageReceivedAsync);
         }
 
@@ -108,7 +110,7 @@ namespace chatbot101.Dialogs
         /// The 'callback' function (method) after the child dialog's finished or closed /with context.Done();/
         /// </summary>
         /// <param name="context">The context for the execution of a dialog's conversational process.</param>
-        /// <param name="result">If there is a parameter passed from the previous stack deconstrucion</param>
+        /// <param name="result">If there is a parameter passed from the previous stack during deconstrucion</param>
         /// <returns>No return type, only a task that represents the state transition</returns>
         private async Task ResumeAfterOptionDialog(IDialogContext context, IAwaitable<object> result)
         {
