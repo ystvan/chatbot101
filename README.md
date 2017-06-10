@@ -7,15 +7,15 @@ lecturer and supervisor: <strong>Peter Levinsky</strong> and <strong>Henrik Høl
 
 ## Plans to implement
 <ul>
-<li>A chatbot built by Microsoft's BotFramework</li><br>
-<img src="https://www.google.dk/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwikh5Cz-rLUAhWSZpoKHbTzAHQQjRwIBw&url=https%3A%2F%2Fchannel9.msdn.com%2FSeries%2FDevOps-for-the-Bot-Framework%2FTelemetry-for-the-Bot-Framework&psig=AFQjCNGJjJkVhFOoTmpqcYyxg26N4TMAFg&ust=1497173039306789" height="50" width="auto"><br>
+<li>A chatbot built by Microsoft's BotFramework (Fronter-bot for student queries regarding school administration)</li><br>
+<video src="https://bot-framework.azureedge.net/videos/skype-hero-050517-sm.mp4" autoplay="" loop=""></video><br>
 <li>Cognitive Services API integration (LUIS) machine learning model trained to understand human language input</li><br>
 <span>
-<img src="https://luisweb.blob.core.windows.net/prod-assets/images/homepage/UsageScenarios.png" height="50" width="auto"></span>
+<img src="https://luisweb.blob.core.windows.net/prod-assets/images/homepage/UsageScenarios.png" height="200" width="auto"></span>
 <br>
 <li>Multiple channel and canvasses integration</li><br>
 <span>
-<img src="https://cdn.worldvectorlogo.com/logos/facebook-messenger.svg" height="50" width="auto">
-<img src="https://cdn.worldvectorlogo.com/logos/skype-2.svg" height="50" width="auto">
+<img src="https://cdn.worldvectorlogo.com/logos/facebook-messenger.svg" height="100" width="auto">
+<img src="https://cdn.worldvectorlogo.com/logos/skype-3.svg" height="100" width="auto">
 </span>
 </ul>
