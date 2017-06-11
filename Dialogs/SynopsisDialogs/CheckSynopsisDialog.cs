@@ -25,7 +25,7 @@ namespace chatbot101.Dialogs.SynopsisDialogs
         public async Task StartAsync(IDialogContext context)
         {
             //sending message to user
-            var message = Cards.CustomHeroCard(context.MakeMessage(), $"I narrowed the scope! Do you find any useful below?", "This is the Synopsis menu", "You can tap or type to reply and I'll collect all the necessary info available currently on Fronter", "",
+            var message = Cards.CustomHeroCard(context.MakeMessage(), $"I narrowed the scope! Do you find any useful below?", "", "", "",
                 new string[] { "Deadlines", "Exam", "Requirements" });
 
             await context.PostAsync(message);
