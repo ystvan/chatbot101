@@ -18,7 +18,8 @@ namespace chatbot101.Dialogs.SynopsisDialogs.Requirements
         /// <returns>No return type, only a task that represents the state transition</returns>
         public async Task StartAsync(IDialogContext context)
         {
-            await context.PostAsync("Formal requirements to the synopsis:\nReason(s) for choosing the topic\nSources\nOutline\nReferences (including all sources referred to in the synopsis)\nAppendices (only appendices of core importance to the synopsis)");
+            await context.PostAsync("I've found the following info:");
+            await context.PostAsync("The synopsis can be no more than 10 standard pages (24.000 characters in total) plus any programs and a running system.");
 
             context.Wait(DeconstructionOfDialog);
             
