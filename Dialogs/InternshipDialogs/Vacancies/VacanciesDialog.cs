@@ -24,9 +24,21 @@ namespace chatbot101.Dialogs.InternshipDialogs.Vacancies
 
             await context.PostAsync(reply);
 
+            context.Wait(DeconstructionOfDialog);
+            
+        }
+
+        /// <summary>
+        /// Closing and removing the current Dialog from the stack
+        /// </summary>
+        /// <param name="context">The context for the execution of a dialog's conversational process.</param>
+        /// <param name="result">A message in a conversation</param>
+        /// <returns>No return type, only a task that represents the state transition</returns>
+        private async Task DeconstructionOfDialog(IDialogContext context, IAwaitable<IMessageActivity> result)
+        {
+            var message = await result;
             // State transition - complete this Dialog and remove it from the stack
             context.Done<object>(new object());
-
         }
 
         /// <summary>

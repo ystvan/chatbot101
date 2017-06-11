@@ -9,10 +9,10 @@ using Microsoft.Bot.Connector;
 
 namespace chatbot101.Dialogs
 {
-    [Serializable]
 
     //IDialog is a suspendable conversational process that produces a result of type TResult.
     //The start of the code that represents the conversational dialog.
+    [Serializable]
     public class RootDialog : IDialog<object>
     {
         /// <summary>
@@ -115,6 +115,10 @@ namespace chatbot101.Dialogs
             try
             {
                 var message = await result;
+                if (message.ToString().ToLower().Contains("thank"))
+                {
+                    await context.PostAsync("My pleasure!");
+                }
             }
             catch (Exception ex)
             {
@@ -122,8 +126,12 @@ namespace chatbot101.Dialogs
             }
             finally
             {
+                var replyMessage = Cards.CustomHeroCard(context.MakeMessage(), $"Anything else I can do you for?", "This is the main menu", "You can tap or type to reply", "http://i.imgur.com/hwQjecp.jpg",
+                new string[] { "Internship info", "Synopsis info", "Other..." });
+
+                await context.PostAsync(replyMessage);
                 // State transition - wait for 'operation choice' message from user (loop back)
-                context.Wait(this.MessageReceivedAsync);
+                context.Wait(this.MessageReceivedOperationChoice);
             }
 
         }
