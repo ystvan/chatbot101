@@ -41,7 +41,7 @@ namespace chatbot101.Dialogs
         {
             //sending message to user
             var replyMessage = Cards.CustomHeroCard(context.MakeMessage(), $"Hi, I am ZIBOT! How can I help you?", "This is the main menu", "You can tap or type to reply", "http://i.imgur.com/hwQjecp.jpg",
-                new string[] { "Internship info", "Synopsis info", "Other..." });
+                new string[] { "Internship info", "Synopsis info", "Book a supervisor" });
 
             await context.PostAsync(replyMessage);
             
@@ -67,7 +67,7 @@ namespace chatbot101.Dialogs
             {
                 await context.Forward(new SupportDialog(), this.ResumeAfterSupportDialog, message, CancellationToken.None);
             }
-            else if (message.Text.Equals("Synopsis info", StringComparison.CurrentCultureIgnoreCase))
+            else if (message.Text. Equals("Synopsis info", StringComparison.CurrentCultureIgnoreCase))
             {
                 context.Call<object>(new CheckSynopsisDialog(), ResumeAfterOptionDialog);
             }
@@ -75,9 +75,9 @@ namespace chatbot101.Dialogs
             {
                 context.Call<object>(new CheckInternshipDialog(), ResumeAfterOptionDialog);
             }
-            else if (message.Text.Equals("Other...", StringComparison.InvariantCultureIgnoreCase))
+            else if (message.Text.Equals("Book a supervisor", StringComparison.InvariantCultureIgnoreCase))
             {
-                context.Call<object>(new CheckLUISDialog(), ResumeAfterOptionDialog);
+                context.Call<object>(new CheckLuisDialog(), ResumeAfterOptionDialog);
             }
             //User has sent something else, for simplycity ignore this input and wait for the next message
             else
