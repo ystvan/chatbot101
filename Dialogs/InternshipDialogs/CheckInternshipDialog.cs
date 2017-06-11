@@ -19,7 +19,7 @@ namespace chatbot101.Dialogs.InternshipDialogs
         public async Task StartAsync(IDialogContext context)
         {
             //sending message to user
-            var message = Cards.CustomHeroCard(context.MakeMessage(), $"Ok, I undestand! I can show you more, select one to narrow the scope!", "", "", "",
+            var message = Cards.CustomHeroCardNoPicture(context.MakeMessage(), $"Ok, I undestand! I can show you more, select one to narrow the scope!",
                 new string[] { "Contract", "Vacancies" });
 
             await context.PostAsync(message);

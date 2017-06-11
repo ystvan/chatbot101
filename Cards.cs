@@ -45,7 +45,34 @@ namespace chatbot101
 
             return replyMsg;
         }
-        
+
+        public static IMessageActivity CustomHeroCardNoPicture(IMessageActivity replyMsg, string title, string[] values)
+        {
+
+            replyMsg.Text = title;
+
+            var cardButtons = new List<CardAction>();
+            foreach (var value in values)
+            {
+                CardAction button = new CardAction()
+                {
+                    Value = value,
+                    Title = value
+                };
+                cardButtons.Add(button);
+            }
+            HeroCard card = new HeroCard()
+            {
+
+                Buttons = cardButtons,
+                
+            };
+            Attachment attachment = card.ToAttachment();
+            replyMsg.Attachments.Add(attachment);
+
+            return replyMsg;
+        }
+
         /// <summary>
         /// Constructor of a Hero Card
         /// </summary>
