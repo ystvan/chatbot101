@@ -127,7 +127,7 @@ namespace chatbot101.Dialogs
             finally
             {
                 var replyMessage = Cards.CustomHeroCard(context.MakeMessage(), $"Anything else I can do you for?", "This is the main menu", "You can tap or type to reply", "http://i.imgur.com/hwQjecp.jpg",
-                new string[] { "Internship info", "Synopsis info", "Other..." });
+                new string[] { "Internship info", "Synopsis info", "Book a supervisor" });
 
                 await context.PostAsync(replyMessage);
                 // State transition - wait for 'operation choice' message from user (loop back)
