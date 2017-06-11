@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using Microsoft.Bot.Connector;
 
 namespace chatbot101
 {
     public class Cards
     {
+        
         /// <summary>
-        /// A Hero card is a card with a single large image
+        /// Constructor of a custom Hero card, a card with a single large image
         /// </summary>
         /// <param name="replyMsg">Post a message to be sent to the user.</param>
         /// <param name="title">The string passed when the method called</param>
         /// <param name="values">The options (buttons) that the user can tap/click on</param>
-        /// <returns></returns>
-        public static IMessageActivity CreateHeroCard(IMessageActivity replyMsg, string title, string imagePath, string[] values)
+        /// <returns>The string value representation of the button clicked by the user</returns>
+        public static IMessageActivity CustomHeroCard(IMessageActivity replyMsg, string title, string subtitle, string text, string imagePath, string[] values)
         {
-            //imagePath = @"http://i.imgur.com/hwQjecp.jpg";
-            string subtitle = "Select an option by tapping on the buttons or type a reply.";
 
             replyMsg.Text = title;
 
@@ -34,6 +30,8 @@ namespace chatbot101
             }
             HeroCard card = new HeroCard()
             {
+               
+                Text = text,
                 Buttons = cardButtons,
                 Images = new List<CardImage>
                 {
@@ -47,5 +45,31 @@ namespace chatbot101
 
             return replyMsg;
         }
+        
+        /// <summary>
+        /// Constructor of a Hero Card
+        /// </summary>
+        /// <param name="title">Title of the card</param>
+        /// <param name="subtitle">Subtitle of the card</param>
+        /// <param name="text">Text or paragraph of the card</param>
+        /// <param name="cardImage">Image of the card</param>
+        /// <param name="cardAction">Action type, can be a go-to-url or sign-in action</param>
+        /// <returns></returns>
+        public static Attachment GetHeroCard(string title, string subtitle, string text, CardImage cardImage, CardAction cardAction)
+        {
+            var heroCard = new HeroCard
+            {
+                Title = title,
+                Subtitle = subtitle,
+                Text = text,
+                Images = new List<CardImage>() { cardImage },
+                Buttons = new List<CardAction>() { cardAction },
+            };
+
+            return heroCard.ToAttachment();
+        }
+  
     }
+
+
 }

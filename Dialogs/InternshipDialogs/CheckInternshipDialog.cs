@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using chatbot101.Dialogs.InternshipDialogs.Contract;
 using chatbot101.Dialogs.InternshipDialogs.Vacancies;
 using Microsoft.Bot.Builder.Dialogs;
@@ -22,7 +19,9 @@ namespace chatbot101.Dialogs.InternshipDialogs
         public async Task StartAsync(IDialogContext context)
         {
             //sending message to user
-            var message = Cards.CreateHeroCard(context.MakeMessage(), $"Which info are you after?", "http://i.imgur.com/7KLlpMX.jpg",
+            await context.PostAsync("Ok, here is what I found! I can show you even more, select one to narrow the scope!");
+
+            var message = Cards.CustomHeroCard(context.MakeMessage(), $"I found some latest info, and summarised them.", "Tap or Type", "to continue", "http://i.imgur.com/ZzNeu3S.jpg",
                 new string[] { "Contract", "Vacancies" });
 
             await context.PostAsync(message);
