@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using Microsoft.Bot.Connector;
 
 namespace chatbot101
@@ -10,7 +7,7 @@ namespace chatbot101
     {
         
         /// <summary>
-        /// A custom Hero card is a card with a single large image
+        /// Constructor of a custom Hero card, a card with a single large image
         /// </summary>
         /// <param name="replyMsg">Post a message to be sent to the user.</param>
         /// <param name="title">The string passed when the method called</param>
@@ -50,13 +47,13 @@ namespace chatbot101
         }
         
         /// <summary>
-        /// 
+        /// Constructor of a Hero Card
         /// </summary>
-        /// <param name="title"></param>
-        /// <param name="subtitle"></param>
-        /// <param name="text"></param>
-        /// <param name="cardImage"></param>
-        /// <param name="cardAction"></param>
+        /// <param name="title">Title of the card</param>
+        /// <param name="subtitle">Subtitle of the card</param>
+        /// <param name="text">Text or paragraph of the card</param>
+        /// <param name="cardImage">Image of the card</param>
+        /// <param name="cardAction">Action type, can be a go-to-url or sign-in action</param>
         /// <returns></returns>
         public static Attachment GetHeroCard(string title, string subtitle, string text, CardImage cardImage, CardAction cardAction)
         {
@@ -71,59 +68,7 @@ namespace chatbot101
 
             return heroCard.ToAttachment();
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="title"></param>
-        /// <param name="subtitle"></param>
-        /// <param name="text"></param>
-        /// <param name="cardImage"></param>
-        /// <param name="cardAction"></param>
-        /// <returns></returns>
-        private static Attachment GetThumbnailCard(string title, string subtitle, string text, CardImage cardImage, CardAction cardAction)
-        {
-            var heroCard = new ThumbnailCard
-            {
-                Title = title,
-                Subtitle = subtitle,
-                Text = text,
-                Images = new List<CardImage>() { cardImage },
-                Buttons = new List<CardAction>() { cardAction },
-            };
-
-            return heroCard.ToAttachment();
-        }
-
-        /// <summary>
-        /// Populate a Hero-card with all possible properties
-        /// </summary>
-        /// <returns>A list of cards ready for carousel styling</returns>
-        private static IList<Attachment> GetCardsAttachments()
-        {
-            return new List<Attachment>()
-            {
-                Cards.GetHeroCard(
-                    "Internship",
-                    "All information available about your mandatory internship",
-                    "Student reports from previous years, vacant positions at Denmark's top 5 IT company, suggested job contract and more.",
-                    new CardImage(url: "http://i.imgur.com/hwQjecp.jpg"),
-                    new CardAction(ActionTypes.OpenUrl, "Learn More", value: "url")),
-                Cards.GetHeroCard(
-                    "title",
-                    "subtitle",
-                    "text",
-                    new CardImage(url: ""),
-                    new CardAction(ActionTypes.OpenUrl, "buttontext", value: "url")),
-                Cards.GetHeroCard(
-                    "title",
-                    "subtitle",
-                    "text",
-                    new CardImage(url: ""),
-                    new CardAction(ActionTypes.OpenUrl, "buttontext", value: "url")),
-
-            };
-        }
+  
     }
 
 

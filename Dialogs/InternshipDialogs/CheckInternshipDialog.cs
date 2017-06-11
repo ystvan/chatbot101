@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using chatbot101.Dialogs.InternshipDialogs.Contract;
 using chatbot101.Dialogs.InternshipDialogs.Vacancies;
 using Microsoft.Bot.Builder.Dialogs;

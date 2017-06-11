@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using AdaptiveCards;
 using chatbot101.Dialogs.InternshipDialogs;
 using chatbot101.Dialogs.LUISDialogs;
 using chatbot101.Dialogs.SynopsisDialogs;

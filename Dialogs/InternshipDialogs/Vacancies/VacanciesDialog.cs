@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
@@ -11,6 +10,11 @@ namespace chatbot101.Dialogs.InternshipDialogs.Vacancies
     [Serializable]
     public class VacanciesDialog : IDialog<object>
     {
+        /// <summary>
+        /// Closing dialog
+        /// </summary>
+        /// <param name="context">The context for the execution of a dialog's conversational process.</param>
+        /// <returns>No return type, only a task that represents the state transition</returns>
         public async Task StartAsync(IDialogContext context)
         {
             var reply = context.MakeMessage();
@@ -24,7 +28,11 @@ namespace chatbot101.Dialogs.InternshipDialogs.Vacancies
             context.Done<object>(new object());
 
         }
-        
+
+        /// <summary>
+        /// Populate Hero-cards with all possible properties
+        /// </summary>
+        /// <returns>A list of cards ready for carousel styling</returns>
         private static IList<Attachment> GetCardsAttachments()
         {
             return new List<Attachment>()
