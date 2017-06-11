@@ -42,15 +42,15 @@ namespace chatbot101.Dialogs
         private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
             //sending message to user
-            var message = Cards.CreateHeroCard(context.MakeMessage(), $"How can I help you?", "http://i.imgur.com/hwQjecp.jpg",
-                new string[] {"Internship info", "Synopsis info", "Other..."});
+            var replyMessage = Cards.CustomHeroCard(context.MakeMessage(), $"Hi, I am ZIBOT! How can I help you?", "This is the main menu", "You can tap or type to reply", "http://i.imgur.com/hwQjecp.jpg",
+                new string[] { "Internship info", "Synopsis info", "Other..." });
 
-            await context.PostAsync(message);
-
+            await context.PostAsync(replyMessage);
+            
             //state transition: wait for the User to respond
             context.Wait(MessageReceivedOperationChoice);
         }
-
+        
         /// <summary>
         /// The bot's response to user's activity
         /// </summary>

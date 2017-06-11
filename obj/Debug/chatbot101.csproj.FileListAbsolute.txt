@@ -36,7 +36,7 @@ C:\Users\IstvanMarki\documents\visual studio 2017\Projects\chatbot101\chatbot101
 C:\Users\IstvanMarki\documents\visual studio 2017\Projects\chatbot101\chatbot101\bin\ja\Microsoft.Bot.Builder.resources.dll
 C:\Users\IstvanMarki\documents\visual studio 2017\Projects\chatbot101\chatbot101\bin\ru\Microsoft.Bot.Builder.resources.dll
 C:\Users\IstvanMarki\documents\visual studio 2017\Projects\chatbot101\chatbot101\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
-C:\Users\IstvanMarki\documents\visual studio 2017\Projects\chatbot101\chatbot101\obj\Debug\chatbot101.csprojResolveAssemblyReference.cache
 C:\Users\IstvanMarki\documents\visual studio 2017\Projects\chatbot101\chatbot101\obj\Debug\Bot Application.dll
 C:\Users\IstvanMarki\documents\visual studio 2017\Projects\chatbot101\chatbot101\obj\Debug\Bot Application.pdb
 C:\Users\IstvanMarki\documents\visual studio 2017\Projects\chatbot101\chatbot101\bin\AdaptiveCards.dll
+C:\Users\IstvanMarki\documents\visual studio 2017\Projects\chatbot101\chatbot101\obj\Debug\chatbot101.csprojResolveAssemblyReference.cache
