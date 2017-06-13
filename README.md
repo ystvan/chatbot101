@@ -9,7 +9,7 @@ lecturer and supervisor: <strong>Peter Levinsky</strong> and <strong>Henrik Høl
 <ul>
 <li>A chatbot built by Microsoft's BotFramework (Fronter-bot for student queries regarding school administration)</li><br>
 <span>
-<img src="https://www.codeproject.com/KB/aspnet/1106457/article.png" height="200" width="auto"><br>
+<img src="https://www.codeproject.com/KB/aspnet/1106457/article.png" height="200" width="auto">
 <img src="https://cdn.worldvectorlogo.com/logos/facebook-messenger.svg" height="100" width="auto">
 </span>
 </ul>
