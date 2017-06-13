@@ -119,6 +119,8 @@
     <Compile Include="Dialogs\InternshipDialogs\Contract\ContractDialog.cs" />
     <Compile Include="Dialogs\InternshipDialogs\Vacancies\VacanciesDialog.cs" />
     <Compile Include="Dialogs\LUISDialogs\CheckLUISDialog.cs" />
+    <Compile Include="Dialogs\LUISDialogs\Models\Meeting.cs" />
+    <Compile Include="Dialogs\LUISDialogs\Models\MeetingsQuery.cs" />
     <Compile Include="Dialogs\LUISDialogs\SupportDialog.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
     <Compile Include="Dialogs\SynopsisDialogs\CheckSynopsisDialog.cs" />
