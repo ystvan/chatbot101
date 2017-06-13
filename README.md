@@ -23,9 +23,7 @@ or on Messenger directly <h4>https://m.me/datamatik</h4>
 
 ## to be implemented
 <li>Cognitive Services API integration (LUIS) machine learning model trained to understand human language input</li><br>
-<span>
-<img src="https://luisweb.blob.core.windows.net/prod-assets/images/homepage/UsageScenarios.png" height="200" width="auto"></span>
-<li>Multiple channel and canvasses integration
-<img src="https://cdn.worldvectorlogo.com/logos/skype-3.svg" height="100" width="auto"></li><br>
-
+<img src="https://luisweb.blob.core.windows.net/prod-assets/images/homepage/UsageScenarios.png" height="200" width="auto"><br>
+<li>Multiple channel and canvasses integration</li><br>
+<img src="http://i.imgur.com/HMZdkE0.png" height="100" width="auto">
 </ul>
