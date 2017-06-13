@@ -39,3 +39,4 @@ C:\Users\IstvanMarki\documents\visual studio 2017\Projects\chatbot101\chatbot101
 C:\Users\IstvanMarki\documents\visual studio 2017\Projects\chatbot101\chatbot101\obj\Release\Bot Application.dll
 C:\Users\IstvanMarki\documents\visual studio 2017\Projects\chatbot101\chatbot101\obj\Release\Bot Application.pdb
 C:\Users\IstvanMarki\documents\visual studio 2017\Projects\chatbot101\chatbot101\bin\AdaptiveCards.dll
+C:\Users\IstvanMarki\documents\visual studio 2017\Projects\chatbot101\chatbot101\obj\Release\chatbot101.csprojResolveAssemblyReference.cache
