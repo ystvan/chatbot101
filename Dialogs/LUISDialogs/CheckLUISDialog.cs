@@ -10,18 +10,11 @@ using Microsoft.Bot.Connector;
 
 namespace chatbot101.Dialogs.LUISDialogs
 {
-    [LuisModel("6eeb5164-90ed-42e9-a3ee-8e1c414a5e78", "7b611596b0264a1eb0c40d2c3e9d81bd")]
+    [LuisModel("6eeb5164-90ed-42e9-a3ee-8e1c414a5e78", "7b611596b0264a1eb0c40d2c3e9d81bd", domain: "westeurope.api.cognitive.microsoft.com")]
     [Serializable]
     public class CheckLuisDialog : LuisDialog<object>
     {
-        public async Task StartAsync(IDialogContext context)
-        {
-            //to be implemented
-            await context.PostAsync("So, how can I help?");
-
-            context.Wait(this.MessageReceived);
-        }
-
+     
         [LuisIntent("")]
         [LuisIntent("None")]
         public async Task None(IDialogContext context, LuisResult result)
@@ -38,6 +31,11 @@ namespace chatbot101.Dialogs.LUISDialogs
         public async Task BookAppointment(IDialogContext context, IAwaitable<IMessageActivity> activity, LuisResult result)
         {
             var message = await activity;
+            await context.PostAsync("succesful LUIS call");
+
+            //quit for now to get the flow
+
+            context.Wait(DeconstructionOfDialog);
 
             //do a fromflow to book an appointment and show caarousel calendar elements
         }
