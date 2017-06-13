@@ -44,7 +44,7 @@ namespace chatbot101.Dialogs.LUISDialogs
         [LuisIntent("Help")]
         public async Task Help(IDialogContext context, LuisResult result)
         {
-            await context.PostAsync("Hi! Try asking me things like 'book a meeting with Peter', 'I need help with my project' or 'schedule appointment for tomorrow'");
+            await context.PostAsync("Try asking me things like 'book a meeting with Peter', 'I need help with my project' or 'schedule appointment for tomorrow'");
 
             context.Wait(this.MessageReceived);
         }

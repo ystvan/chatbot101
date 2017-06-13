@@ -79,6 +79,7 @@ namespace chatbot101.Dialogs
             }
             else if (message.Text.Equals("Book a supervisor", StringComparison.InvariantCultureIgnoreCase))
             {
+                await context.PostAsync("Alright, I am listening.");
                 context.Call<object>(new CheckLuisDialog(), ResumeAfterOptionDialog);
             }
             //User has sent something else, for simplycity ignore this input and wait for the next message
