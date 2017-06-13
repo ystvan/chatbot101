@@ -10,6 +10,8 @@ using Microsoft.Bot.Connector;
 namespace chatbot101.Dialogs
 {
 
+
+
     //IDialog is a suspendable conversational process that produces a result of type TResult.
     //The start of the code that represents the conversational dialog.
     [Serializable]
@@ -77,6 +79,7 @@ namespace chatbot101.Dialogs
             }
             else if (message.Text.Equals("Book a supervisor", StringComparison.InvariantCultureIgnoreCase))
             {
+                await context.PostAsync("Alright, I am listening.");
                 context.Call<object>(new CheckLuisDialog(), ResumeAfterOptionDialog);
             }
             //User has sent something else, for simplycity ignore this input and wait for the next message
@@ -127,7 +130,7 @@ namespace chatbot101.Dialogs
             finally
             {
                 var replyMessage = Cards.CustomHeroCard(context.MakeMessage(), $"Anything else I can do you for?", "This is the main menu", "You can tap or type to reply", "http://i.imgur.com/hwQjecp.jpg",
-                new string[] { "Internship info", "Synopsis info", "Other..." });
+                new string[] { "Internship info", "Synopsis info", "Book a supervisor" });
 
                 await context.PostAsync(replyMessage);
                 // State transition - wait for 'operation choice' message from user (loop back)

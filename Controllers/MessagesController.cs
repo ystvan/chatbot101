@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 using System.Web.Http;
 using chatbot101.Dialogs;
+using chatbot101.Services;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
@@ -14,6 +17,9 @@ namespace chatbot101
     //This API Controller is an application endpoint for the Bot Framework
     public class MessagesController : ApiController
     {
+        private static readonly bool IsSpellCorrectionEnabled = bool.Parse(WebConfigurationManager.AppSettings["IsSpellCorrectionEnabled"]);
+        private readonly BingSpellCheckService spellService = new BingSpellCheckService();
+
         /// <summary>
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
@@ -25,6 +31,17 @@ namespace chatbot101
             {
                 await SendTypingActivity(activity);
 
+                if (IsSpellCorrectionEnabled)
+                {
+                    try
+                    {
+                        activity.Text = await this.spellService.GetCorrectedTextAsync(activity.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        Trace.TraceError(ex.ToString());
+                    }
+                }
                 //bot starts the conversation by firing up the RootDialog
                 await Conversation.SendAsync(activity, () => new RootDialog());
             }
