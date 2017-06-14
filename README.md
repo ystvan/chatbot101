@@ -20,7 +20,6 @@ lecturer and supervisor: <strong>Peter Levinsky</strong> and <strong>Henrik Høl
 ## writing code on production :see_no_evil: :hear_no_evil: :speak_no_evil:
 <p>Go and give it a spin, message my bot at <br>
 <h4>https://www.facebook.com/ZIBOT-179626532568150/</h4><br>
-or on Messenger directly <h4>https://m.me/ZIBOT-179626532568150</h4> 
 </p>
 
 ## to be implemented
