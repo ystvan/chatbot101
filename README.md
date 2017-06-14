@@ -12,6 +12,8 @@ lecturer and supervisor: <strong>Peter Levinsky</strong> and <strong>Henrik Høl
 <img src="https://s3.amazonaws.com/coursetro/posts/45-full.png" height="200" width="auto">
 <img src="https://cdn.worldvectorlogo.com/logos/facebook-messenger.svg" height="200" width="auto" padding="20px">
 </span>
+<li>Cognitive Services API integration (LUIS) machine learning model trained to understand human language input</li><br>
+<img src="https://luisweb.blob.core.windows.net/prod-assets/images/homepage/UsageScenarios.png" height="200" width="auto"><br>
 </ul>
 
 # it's live 
@@ -22,8 +24,7 @@ or on Messenger directly <h4>https://m.me/datamatik</h4>
 </p>
 
 ## to be implemented
-<li>Cognitive Services API integration (LUIS) machine learning model trained to understand human language input</li><br>
-<img src="https://luisweb.blob.core.windows.net/prod-assets/images/homepage/UsageScenarios.png" height="200" width="auto"><br>
+
 <li>Multiple channel and canvasses integration</li><br>
 <img src="http://i.imgur.com/HMZdkE0.png" height="100" width="auto">
 </ul>
