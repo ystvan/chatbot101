@@ -10,7 +10,7 @@ namespace chatbot101.Dialogs.LUISDialogs.Models
         [Optional]
         public string Date { get; set; }
 
-        [Prompt("Who would you like to meet with?")]
+        [Prompt("Who is your supervisor?")]
         [Optional]
         public string Name { get; set; }
     }

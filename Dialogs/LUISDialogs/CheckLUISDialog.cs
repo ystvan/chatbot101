@@ -13,13 +13,23 @@ using Microsoft.Bot.Connector;
 
 namespace chatbot101.Dialogs.LUISDialogs
 {
+    /// <summary>
+    /// This dialog is type of LUISDialog, different from IDialog, the "ChildDialogs" are not being stacked, they're scorables.
+    /// </summary>
     [LuisModel("6eeb5164-90ed-42e9-a3ee-8e1c414a5e78", "7b611596b0264a1eb0c40d2c3e9d81bd", domain: "westeurope.api.cognitive.microsoft.com")]
     [Serializable]
     public class CheckLuisDialog : LuisDialog<object>
     {
-        private const string MeetingDate = "Date";
-        private const string Teacher = "Name";
+        //From the LUIS.AI language model the entities
+        private const string EntityMeetingDate = "MeetingDate";
+        private const string EntityTeacher = "Teacher";
 
+        /// <summary>
+        /// If LUIS does not find any matching utterance or no top scoring intents, answers with this default dialog
+        /// </summary>
+        /// <param name="context">The context for the execution of a dialog's conversational process.</param>
+        /// <param name="result">Instance of LuisResult class, can contain response to dialog, intents and entities recommendation</param>
+        /// <returns>No return type, only a task that represents that the Message is received and waits for the next one</returns>
         [LuisIntent("")]
         [LuisIntent("None")]
         public async Task None(IDialogContext context, LuisResult result)
@@ -31,7 +41,27 @@ namespace chatbot101.Dialogs.LUISDialogs
             context.Wait(this.MessageReceived);
         }
 
+        /// <summary>
+        /// If the top scoring matchin utterance is Help this Task is called
+        /// </summary>
+        /// <param name="context">The context for the execution of a dialog's conversational process.</param>
+        /// <param name="result">Instance of LuisResult class, can contain response to dialog, intents and entities recommendation</param>
+        /// <returns>No return type, only a task that represents that the Message is received and waits for the next one</returns>
+        [LuisIntent("Help")]
+        public async Task Help(IDialogContext context, LuisResult result)
+        {
+            await context.PostAsync("Try asking me things like 'book a meeting with Peter', 'I need help with my project' or 'schedule appointment for tomorrow'");
 
+            context.Wait(this.MessageReceived);
+        }
+
+        /// <summary>
+        /// If the top scoring matchin utterance is BookSupervision this Task is called
+        /// </summary>
+        /// <param name="context">The context for the execution of a dialog's conversational process.</param>
+        /// <param name="activity">A message in a conversation</param>
+        /// <param name="result">Instance of LuisResult class, can contain response to dialog, intents and entities recommendation</param>
+        /// <returns>No return type, only a task that represents that the Message is received and waits for the next one</returns>
         [LuisIntent("BookSupervision")]
         public async Task BookAppointment(IDialogContext context, IAwaitable<IMessageActivity> activity, LuisResult result)
         {
@@ -39,13 +69,17 @@ namespace chatbot101.Dialogs.LUISDialogs
             await context.PostAsync($"I am analysing your message: '{message.Text}'...");
 
             var meetingsQuery = new MeetingsQuery();
-
+            
             EntityRecommendation teacherEntityRecommendation;
-            //EntityRecommendation dateEntityRecommendation;
+            EntityRecommendation dateEntityRecommendation;
 
-            if (result.TryFindEntity(Teacher, out teacherEntityRecommendation))
+            if (result.TryFindEntity(EntityTeacher, out teacherEntityRecommendation))
             {
-                teacherEntityRecommendation.Type = "Teacher";
+                teacherEntityRecommendation.Type = "Name";
+            }
+            if (result.TryFindEntity(EntityMeetingDate, out dateEntityRecommendation))
+            {
+                dateEntityRecommendation.Type = "Date";
             }
 
             var meetingsFormDialog = new FormDialog<MeetingsQuery>(meetingsQuery, this.BuildMeetingsForm, FormOptions.PromptInStart, result.Entities);
@@ -53,6 +87,39 @@ namespace chatbot101.Dialogs.LUISDialogs
             
         }
 
+        /// <summary>
+        /// IF LUIS cant find matchin entities for "Teacher" and "MeetingDate" it will build a FormFlow, asking the user to provide missing information
+        /// </summary>
+        /// <returns>A form if any info is missing</returns>
+        private IForm<MeetingsQuery> BuildMeetingsForm()
+        {
+            OnCompletionAsyncDelegate<MeetingsQuery> processMeetingsSearch = async (context, state) =>
+            {
+                var message = "Searching for supervision slots";
+                if (!string.IsNullOrEmpty(state.Date))
+                {
+                    message += $" at {state.Date}...";
+                }
+                else if (!string.IsNullOrEmpty(state.Name))
+                {
+                    message += $" with professor {state.Name}...";
+                }
+                await context.PostAsync(message);
+            };
+
+            return new FormBuilder<MeetingsQuery>()
+                .Field(nameof(MeetingsQuery.Date), (state) => string.IsNullOrEmpty(state.Date))
+                .Field(nameof(MeetingsQuery.Name), (state) => string.IsNullOrEmpty(state.Name))
+                .OnCompletion(processMeetingsSearch)
+                .Build();
+        }
+
+        /// <summary>
+        /// Creating carousel type HeroCards with the available timeslots for supervision
+        /// </summary>
+        /// <param name="context">The context for the execution of a dialog's conversational process.</param>
+        /// <param name="result">Passed search-query from the caller method</param>
+        /// <returns>No return type, only a task that represents that the Message is received and waits for the next one which will close and remove the whole LUIS dialog from the stack</returns>
         private async Task ResumeAfterMeetingsFormDialog(IDialogContext context, IAwaitable<MeetingsQuery> result)
         {
             try
@@ -115,6 +182,11 @@ namespace chatbot101.Dialogs.LUISDialogs
             }
         }
 
+        /// <summary>
+        /// Creates random meeting slots for supervision
+        /// </summary>
+        /// <param name="searchQuery">The search-query</param>
+        /// <returns>A List of random objects of type Meeting</returns>
         private async Task<IEnumerable<Meeting>> GetMeetingsAsync(MeetingsQuery searchQuery)
         {
             var meetings = new List<Meeting>();
@@ -125,7 +197,7 @@ namespace chatbot101.Dialogs.LUISDialogs
                 var random = new Random(i);
                 Meeting meeting = new Meeting()
                 {
-                    DateTime = $" Available time: {searchQuery.Date} At {i} sharp",
+                    DateTime = $" Available time: {searchQuery.Date} At building {i}",
                     Teacher = $" Professor {searchQuery.Name}",
                     Location = $" Elisagårdsvej 3, Room {random.Next(1, 300)}",
                     Image = $"https://placeholdit.imgix.net/~text?txtsize=35&txt=Supervision+{i}&w=500&h=260"
@@ -137,39 +209,12 @@ namespace chatbot101.Dialogs.LUISDialogs
             return meetings;
         }
 
-        private IForm<MeetingsQuery> BuildMeetingsForm()
-        {
-            OnCompletionAsyncDelegate<MeetingsQuery> processMeetingsSearch = async (context, state) =>
-            {
-                var message = "Searching for supervision slots";
-                if (!string.IsNullOrEmpty(state.Date))
-                {
-                    message += $" at {state.Date}...";
-                }
-                else if (!string.IsNullOrEmpty(state.Name))
-                {
-                    message += $" with professor {state.Name.ToUpperInvariant()}...";
-                }
-                await context.PostAsync(message);
-            };
-
-            return new FormBuilder<MeetingsQuery>()
-                .Field(nameof(MeetingsQuery.Date), (state) => string.IsNullOrEmpty(state.Date))
-                .Field(nameof(MeetingsQuery.Name), (state) => string.IsNullOrEmpty(state.Name))
-                .OnCompletion(processMeetingsSearch)
-                .Build();
-        }
-
-
-        [LuisIntent("Help")]
-        public async Task Help(IDialogContext context, LuisResult result)
-        {
-            await context.PostAsync("Try asking me things like 'book a meeting with Peter', 'I need help with my project' or 'schedule appointment for tomorrow'");
-
-            context.Wait(this.MessageReceived);
-        }
-
-
+        /// <summary>
+        /// Closes and removes the current CheckLUISDialog from the stack
+        /// </summary>
+        /// <param name="context">The context for the execution of a dialog's conversational process.</param>
+        /// <param name="result">A message in a conversation</param>
+        /// <returns>State transition</returns>
         private async Task DeconstructionOfDialog(IDialogContext context, IAwaitable<IMessageActivity> result)
         {
             var message = await result;
