@@ -100,9 +100,9 @@ namespace chatbot101.Dialogs.LUISDialogs
                 {
                     message += $" at {state.Date}...";
                 }
-                else if (!string.IsNullOrEmpty(state.Name))
+                if (!string.IsNullOrEmpty(state.Name))
                 {
-                    message += $" with professor {state.Name}...";
+                    message += $" with professor {state.Name.ToUpperInvariant()}...";
                 }
                 await context.PostAsync(message);
             };
@@ -198,7 +198,7 @@ namespace chatbot101.Dialogs.LUISDialogs
                 Meeting meeting = new Meeting()
                 {
                     DateTime = $" Available time: {searchQuery.Date} At building {i}",
-                    Teacher = $" Professor {searchQuery.Name}",
+                    Teacher = $" Professor {searchQuery.Name.ToUpperInvariant()}",
                     Location = $" Elisagårdsvej 3, Room {random.Next(1, 300)}",
                     Image = $"https://placeholdit.imgix.net/~text?txtsize=35&txt=Supervision+{i}&w=500&h=260"
                 };
